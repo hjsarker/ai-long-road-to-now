@@ -2,225 +2,157 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b19">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="AI did not begin in 2022. Travel through 80+ years of ideas, computers, data, and discoveries in a cinematic, interactive journey through the history of artificial intelligence.">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="The future had a very long beginning. Explore the history of artificial intelligence in one interactive map: ideas, computing power and data, 1943–2026.">
   <meta name="author" content="Hillol Sarker Jogesh">
+  <meta property="og:title" content="The Long Road to Now — Interactive AI History">
+  <meta property="og:description" content="One map. Eight decades. Three converging forces. Explore the breakthroughs behind today's AI.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI: The Long Road to Now — An Interactive Journey">
-  <meta property="og:description" content="The ideas came early. The ingredients arrived much later. Explore how AI reached its present moment, one chapter at a time.">
   <meta property="og:url" content="https://hjsarker.github.io/ai-long-road-to-now/">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://hjsarker.github.io/ai-long-road-to-now/">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.css?v=1">
-  <title>AI: The Long Road to Now — A Visual Journey Through AI History</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css?v=20261025-map-v1">
   <script src="./content.js" defer></script>
-  <script src="./app.js" defer></script>
+  <script src="./app.js?v=20261025-map-v1" defer></script>
+  <title>AI: The Long Road to Now | An Interactive History</title>
 </head>
 <body>
-  <a class="skip-link" href="#introduction">Skip to story</a>
-  <div class="page-progress" id="page-progress" aria-hidden="true"></div>
-  <header class="site-header" id="top">
-    <div class="container nav-inner">
-      <a href="#top" class="brand" aria-label="The Long Road to Now — Home">
-        <span class="brand-symbol" aria-hidden="true"><span class="brand-core"></span><span class="brand-orbit"></span></span>
-        <span class="brand-type">THE LONG ROAD<span>TO NOW<span class="brand-period">.</span></span></span>
+  <a href="#timeline" class="skip-link">Skip to the interactive timeline</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="The Long Road to Now, home">
+        <span class="brand-orbit" aria-hidden="true"><span></span></span>
+        <span>THE LONG ROAD <small>TO NOW<span class="brand-dot">.</span></small></span>
       </a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#introduction">The idea</a>
-        <a href="#journey">The journey</a>
-        <a href="#time-lens">Time lens</a>
-        <a href="#sources">Sources</a>
-      </nav>
-      <a class="nav-pill" href="#journey">Explore the story <span aria-hidden="true">↗</span></a>
-      <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
-    </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
-      <a href="#introduction">The idea</a><a href="#journey">The journey</a><a href="#time-lens">Time lens</a><a href="#sources">Sources</a>
-    </nav>
-  </header>
+      <span class="header-divider" aria-hidden="true"></span>
+      <div class="header-context">AN INTERACTIVE HISTORY OF ARTIFICIAL INTELLIGENCE</div>
+      <div class="topbar-actions">
+        <span class="live-indicator"><i aria-hidden="true"></i> 1943 — 2026</span>
+        <button class="nav-button" type="button" id="open-sources"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.2"/></svg> About &amp; sources</button>
+      </div>
+    </header>
 
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
-      <div class="hero-haze hero-haze-a" aria-hidden="true"></div>
-      <div class="hero-haze hero-haze-b" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true"></span> A STORY 80+ YEARS IN THE MAKING</p>
-          <h1 id="hero-title">The future had<br>a very long <em>beginning.</em></h1>
-          <p class="hero-lead">AI didn't suddenly appear. Its story begins with bold ideas, slow computers, and decades of people trying to make machines learn.</p>
-          <p class="hero-lead hero-lead-last">This is the journey from <strong>“Could a machine think?”</strong> to the AI we use today.</p>
-          <div class="hero-buttons">
-            <a class="button button-primary" href="#introduction">Begin the journey <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="#time-lens">Jump through time <span aria-hidden="true">⌁</span></a>
-          </div>
-          <div class="hero-metadata">
-            <span><span class="status-dot"></span> INTERACTIVE EXPERIENCE</span>
-            <span>6 CHAPTERS</span>
-            <span>1943—2026</span>
-          </div>
+    <main class="experience" id="main">
+      <div class="opening">
+        <div class="opening-copy">
+          <p class="eyebrow"><span class="star-mark" aria-hidden="true">✦</span> THE EVOLUTION OF INTELLIGENCE</p>
+          <h1>The future had a <em>very long beginning.</em></h1>
+          <p class="intro">AI didn't arrive overnight. Follow three connected forces—<strong>ideas, computing power, and data</strong>—from the first theories to the tools we use today.</p>
         </div>
-        <div class="hero-cosmos" role="img" aria-label="Abstract glowing orbit connecting early AI ideas, computing power and data to the present">
-          <div class="cosmos-halo halo-one"></div><div class="cosmos-halo halo-two"></div><div class="cosmos-halo halo-three"></div>
-          <div class="cosmos-axis cosmos-axis-one"></div><div class="cosmos-axis cosmos-axis-two"></div>
-          <div class="cosmos-center"><span class="cosmos-inner">AI<span class="cosmos-pulse"></span></span></div>
-          <div class="orbit-dot orbit-dot-a"></div><div class="orbit-dot orbit-dot-b"></div><div class="orbit-dot orbit-dot-c"></div>
-          <div class="cosmos-note cosmos-note-a"><span>01 / IDEAS</span><strong>1943</strong><small>The first blueprints</small></div>
-          <div class="cosmos-note cosmos-note-b"><span>02 / COMPUTE</span><strong>2012</strong><small>The scaling moment</small></div>
-          <div class="cosmos-note cosmos-note-c"><span>03 / PEOPLE</span><strong>NOW</strong><small>A new everyday tool</small></div>
-          <div class="cosmos-caption">NOT A SUDDEN INVENTION. AN 80-YEAR CONVERGENCE.</div>
+        <div class="opening-aside" aria-label="Map at a glance">
+          <div class="overview-value"><span class="overview-mark" aria-hidden="true">↗</span> 83 <small>YEARS</small></div>
+          <div class="overview-caption">One history. Three intertwined stories.</div>
         </div>
       </div>
-      <a class="scroll-cue" href="#introduction"><span class="scroll-cue-line" aria-hidden="true"></span> SCROLL TO DISCOVER</a>
-      <div class="hero-horizon" aria-hidden="true"></div>
-    </section>
 
-    <section class="introduction section-space" id="introduction" aria-labelledby="intro-heading">
-      <div class="container">
-        <div class="intro-head">
-          <p class="section-label"><span>00</span> BEFORE WE BEGIN</p>
-          <h2 id="intro-heading">The breakthrough wasn't<br><em>one invention.</em></h2>
-          <p class="section-deck">An idea can exist for decades before the world is ready for it. AI grew when three different stories finally started to meet.</p>
-        </div>
-        <div class="ingredient-grid">
-          <article class="ingredient ingredient-idea">
-            <div class="ingredient-index"><span class="ingredient-icon">✳</span><span>THE BLUEPRINT</span></div>
-            <h3>Ideas <span>&amp; algorithms</span></h3>
-            <p>The clever ways researchers taught machines to reason, spot patterns, and learn.</p>
-            <div class="ingredient-line" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-            <p class="ingredient-footer">THE QUESTION: <strong>How should it learn?</strong></p>
-          </article>
-          <article class="ingredient ingredient-compute">
-            <div class="ingredient-index"><span class="ingredient-icon">⌘</span><span>THE ENGINE</span></div>
-            <h3>Computing <span>power</span></h3>
-            <p>The processors, memory, and infrastructure needed to train and run larger systems.</p>
-            <div class="ingredient-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <p class="ingredient-footer">THE QUESTION: <strong>Can we run it?</strong></p>
-          </article>
-          <article class="ingredient ingredient-data">
-            <div class="ingredient-index"><span class="ingredient-icon">◈</span><span>THE EXPERIENCE</span></div>
-            <h3>Data <span>&amp; examples</span></h3>
-            <p>The text, images, sounds, and experiences from which learning systems find patterns.</p>
-            <div class="ingredient-dots" aria-hidden="true"></div>
-            <p class="ingredient-footer">THE QUESTION: <strong>What can it learn from?</strong></p>
-          </article>
-        </div>
-        <div class="intro-bridge"><span class="bridge-symbol" aria-hidden="true">↘</span><p><strong>Now follow the thread.</strong> Watch how these three ingredients changed over time—and why progress was anything but a straight line.</p><a href="#journey">Enter chapter one <span aria-hidden="true">→</span></a></div>
-      </div>
-    </section>
-
-    <section class="journey section-space" id="journey" aria-labelledby="journey-heading">
-      <div class="container journey-heading">
-        <p class="section-label"><span>01—06</span> FOLLOW THE THREAD</p>
-        <h2 id="journey-heading">Six chapters.<br><em>One extraordinary journey.</em></h2>
-        <p class="section-deck">Take your time. Each stop tells you what changed, why it mattered, and what the world still lacked.</p>
-      </div>
-      <div class="container journey-layout">
-        <aside class="story-rail" aria-label="Jump to a chapter">
-          <div class="rail-sticky">
-            <p class="rail-label">YOU ARE EXPLORING</p>
-            <div class="rail-active-year" id="rail-active-year">1943</div>
-            <p class="rail-active-title" id="rail-active-title">The spark</p>
-            <div class="rail-links" id="rail-links"></div>
-            <div class="rail-progress-track" aria-hidden="true"><div id="rail-progress" class="rail-progress-fill"></div></div>
-            <a class="rail-explore" href="#time-lens">Or explore any year <span aria-hidden="true">↗</span></a>
+      <section class="stage" id="timeline" aria-label="Interactive AI history timeline and selected milestone">
+        <div class="timeline-pane">
+          <div class="viz-toolbar">
+            <div class="chart-title"><span class="chart-title-icon" aria-hidden="true">◈</span><span>THE EVOLUTION MAP <small>EXPLORE THE BREAKTHROUGHS</small></span></div>
+            <div class="track-controls" role="group" aria-label="Highlight a development stream">
+              <button class="track-toggle is-active" type="button" data-track="all" aria-pressed="true"><span class="track-all-mark">✳</span> All</button>
+              <button class="track-toggle" type="button" data-track="idea" aria-pressed="false"><i class="idea-key" aria-hidden="true"></i> Ideas</button>
+              <button class="track-toggle" type="button" data-track="compute" aria-pressed="false"><i class="compute-key" aria-hidden="true"></i> Compute</button>
+              <button class="track-toggle" type="button" data-track="data" aria-pressed="false"><i class="data-key" aria-hidden="true"></i> Data</button>
+            </div>
           </div>
+
+          <div class="chart-main">
+            <div class="chart-scroll" id="chart-scroll" tabindex="0" aria-label="Timeline graphic, 1943 through 2026. Scroll sideways on narrow screens.">
+              <svg id="history-map" class="history-map" viewBox="0 0 1180 532" preserveAspectRatio="xMidYMid meet" role="group" aria-label="The interactive map shows ideas, computing power and data evolving from 1943 to 2026">
+                <defs>
+                  <linearGradient id="idea-gradient" x1="0" y1="0" x2="1" y2=".25"><stop offset="0%" stop-color="#735de1"/><stop offset="58%" stop-color="#b093ff"/><stop offset="100%" stop-color="#e1baff"/></linearGradient>
+                  <linearGradient id="compute-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#365b95"/><stop offset="55%" stop-color="#61b9ff"/><stop offset="100%" stop-color="#b5e7ff"/></linearGradient>
+                  <linearGradient id="data-gradient" x1="0" y1="0" x2="1" y2="-.35"><stop offset="0%" stop-color="#795641"/><stop offset="62%" stop-color="#e5a66b"/><stop offset="100%" stop-color="#ffe0ad"/></linearGradient>
+                  <radialGradient id="converge-halo"><stop offset="0%" stop-color="#c5b4ff" stop-opacity=".35"/><stop offset="65%" stop-color="#917fff" stop-opacity=".09"/><stop offset="100%" stop-color="#917fff" stop-opacity="0"/></radialGradient>
+                  <filter id="track-blur" x="-45%" y="-90%" width="190%" height="280%"><feGaussianBlur stdDeviation="8"/></filter>
+                  <filter id="node-glow" x="-250%" y="-250%" width="600%" height="600%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <pattern id="subtle-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#5d7193" stroke-width=".6" opacity=".14"/></pattern>
+                </defs>
+                <rect x="0" y="0" width="1180" height="532" fill="url(#subtle-grid)"/>
+                <g aria-hidden="true" class="background-eras">
+                  <rect x="55" y="43" width="300" height="397" fill="#8e7bff" fill-opacity=".022" rx="8"/>
+                  <rect x="355" y="43" width="249" height="397" fill="#82d4ff" fill-opacity=".018" rx="8"/>
+                  <rect x="604" y="43" width="186" height="397" fill="#ebbd85" fill-opacity=".017" rx="8"/>
+                  <rect x="790" y="43" width="320" height="397" fill="#bb97ff" fill-opacity=".035" rx="8"/>
+                  <text x="78" y="65" class="era-caption">EARLY IDEAS</text>
+                  <text x="378" y="65" class="era-caption">LEARNING</text>
+                  <text x="625" y="65" class="era-caption">THE DIGITAL AGE</text>
+                  <text x="809" y="65" class="era-caption">THE CONVERGENCE</text>
+                  <path d="M355 75V445M604 75V445M790 75V445" stroke="#667495" stroke-width="1" stroke-opacity=".15" stroke-dasharray="5 9"/>
+                </g>
+                <g class="lane-lines" aria-hidden="true">
+                  <path id="track-idea" class="lane-path idea" d="M82 167 C185 122 274 175 362 171 S512 185 603 185 S726 184 790 196 S884 225 945 243 S1040 264 1090 266"/>
+                  <path id="track-compute" class="lane-path compute" d="M82 288 C183 288 281 288 362 284 S510 275 604 274 S738 262 790 261 S932 264 1090 266"/>
+                  <path id="track-data" class="lane-path data" d="M82 396 C200 406 272 400 362 391 S528 373 604 346 S745 321 790 314 S937 268 1090 266"/>
+                </g>
+                <g class="track-aura" aria-hidden="true"><circle cx="1087" cy="266" r="105" fill="url(#converge-halo)"/><circle cx="1087" cy="266" r="34" fill="none" stroke="#c7b7ff" opacity=".15"/><circle cx="1087" cy="266" r="63" fill="none" stroke="#c7b7ff" opacity=".08" stroke-dasharray="4 7"/></g>
+                <g class="lane-labels" aria-hidden="true">
+                  <rect x="75" y="110" width="95" height="27" rx="10" fill="#262047" stroke="#937cf5" stroke-opacity=".45"/><text x="88" y="127" class="lane-label idea-ink">✳  IDEAS</text>
+                  <rect x="75" y="238" width="111" height="27" rx="10" fill="#172b41" stroke="#67b6f8" stroke-opacity=".45"/><text x="88" y="256" class="lane-label compute-ink">⌘  COMPUTE</text>
+                  <rect x="75" y="420" width="94" height="27" rx="10" fill="#37271d" stroke="#e8ae79" stroke-opacity=".45"/><text x="88" y="438" class="lane-label data-ink">◇  DATA</text>
+                </g>
+                <g class="convergence-note" aria-hidden="true">
+                  <path d="M772 110L786 120L816 120" fill="none" stroke="#b2a1ff" stroke-opacity=".55" stroke-width="1.4"/>
+                  <text x="822" y="115" class="convergence-title">IDEAS WERE OLD.</text><text x="822" y="133" class="convergence-em">THE COMBINATION WAS NEW.</text>
+                </g>
+                <g id="milestone-nodes" aria-label="Select a year to read its story"></g>
+                <g aria-hidden="true" class="chart-axis">
+                  <path d="M82 470H1090" stroke="#56627f" stroke-opacity=".6" stroke-width="1"/>
+                  <g id="year-ticks"></g>
+                  <text x="82" y="518" class="axis-note">THE FIRST BLUEPRINTS</text>
+                  <text x="1090" y="518" text-anchor="end" class="axis-note">THE STORY CONTINUES →</text>
+                </g>
+              </svg>
+            </div>
+            <div class="chart-help"><span class="chart-help-pulse" aria-hidden="true"></span><strong>HOVER OR CLICK ANY POINT</strong><span class="help-divider">/</span> <span>See what changed at that moment</span><span class="mobile-pan-help">↔ Swipe timeline to explore</span></div>
+          </div>
+
+          <div class="timeline-footer">
+            <div class="timeline-footer-heading"><span class="footer-step"><span id="timeline-index">08</span> / <span id="timeline-total">15</span></span><span>TRAVEL THROUGH TIME</span></div>
+            <button class="step-control" id="previous-event" type="button" aria-label="Previous milestone">←</button>
+            <label for="time-range" class="sr-only">Choose a year between 1943 and 2026</label>
+            <input type="range" class="time-range" id="time-range" min="1943" max="2026" step="1" value="2012" aria-label="Explore AI milestones by year">
+            <button class="step-control" id="next-event" type="button" aria-label="Next milestone">→</button>
+            <button class="play-button" id="play-journey" type="button" aria-pressed="false"><span id="play-symbol">▶</span> <span id="play-label">Play journey</span></button>
+          </div>
+        </div>
+
+        <aside class="story-pane" id="story-pane" aria-label="Details for selected milestone" aria-live="off">
+          <div class="detail-topline"><span class="detail-topline-mark"><span></span> MOMENT IN TIME</span><span class="detail-id" id="detail-id">08 / 15</span></div>
+          <div class="visual-box" id="visual-box" aria-label="An original illustration of the selected milestone">
+            <div class="visual-grid" aria-hidden="true"></div>
+            <div id="milestone-illustration" class="milestone-illustration" aria-hidden="true"></div>
+            <div class="visual-overlay"><span>THE LONG ROAD TO NOW</span><span>ILLUSTRATED MOMENT</span></div>
+          </div>
+          <div class="detail-year-row"><span class="detail-year" id="detail-year">2012</span><span class="detail-tag" id="detail-tag">BREAKTHROUGH</span></div>
+          <h2 class="detail-title" id="detail-title">Deep learning breaks through</h2>
+          <p class="detail-summary" id="detail-summary">A pivotal moment in AI history.</p>
+          <div class="detail-explanation">
+            <div class="explain-label"><span class="explain-line" aria-hidden="true"></span> WHY IT MATTERED</div>
+            <p id="detail-explanation">For the first time, methods, data and computing power came together at a new scale.</p>
+          </div>
+          <div class="detail-bottom"><a id="detail-source" href="https://ourworldindata.org/brief-history-of-ai" target="_blank" rel="noopener noreferrer">Read original source <span aria-hidden="true">↗</span></a><span>SELECT A NEW POINT TO CONTINUE</span></div>
         </aside>
-        <div class="chapter-stack" id="chapter-stack">
-          <noscript><p class="no-script">This interactive journey needs JavaScript. You can still review the history from the sources at the end of this page.</p></noscript>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section class="interlude section-space" id="turning-point" aria-labelledby="interlude-heading">
-      <div class="container interlude-grid">
-        <div class="interlude-copy">
-          <p class="section-label"><span>THE BIG REVEAL</span> WHY DID IT HAPPEN THEN?</p>
-          <h2 id="interlude-heading">The ideas were old.<br><em>The combination was new.</em></h2>
-          <p>For decades, different pieces of the puzzle advanced at different speeds. Around the 2010s, improved learning techniques, bigger datasets, and practical parallel computing helped powerful new approaches flourish.</p>
-          <p>This is a conceptual illustration of the ingredients—not a numerical graph. History is messier than three perfect curves.</p>
-          <a class="text-link" href="#time-lens">Explore the turning points <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="convergence-panel">
-          <div class="convergence-top"><span>THE CONVERGENCE</span><span>ILLUSTRATIVE · NOT TO SCALE</span></div>
-          <svg viewBox="0 0 540 360" role="img" aria-label="Illustration of three different streams of progress, ideas, compute and data, converging towards a brighter AI era">
-            <defs><linearGradient id="illuminated" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9876ff"/><stop offset="100%" stop-color="#e0afff"/></linearGradient><linearGradient id="power" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#49c2ff"/><stop offset="100%" stop-color="#b3f2ff"/></linearGradient><linearGradient id="data" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e1a16b"/><stop offset="100%" stop-color="#ffdd9b"/></linearGradient></defs>
-            <g opacity=".13" stroke="#c9c4f0" fill="none"><path d="M20 70H520M20 135H520M20 200H520M20 265H520"/><path d="M90 30V313M180 30V313M270 30V313M360 30V313M450 30V313"/></g>
-            <path d="M30 96 C115 102 140 75 200 85 S303 151 370 169 S450 178 507 183" stroke="url(#illuminated)" stroke-width="3.5" fill="none" stroke-linecap="round" class="convergence-line"/>
-            <path d="M30 172 C123 169 173 173 231 177 S330 183 370 186 S460 186 507 184" stroke="url(#power)" stroke-width="3.5" fill="none" stroke-linecap="round" class="convergence-line"/>
-            <path d="M30 275 C125 274 153 248 220 224 S321 205 370 193 S452 183 507 185" stroke="url(#data)" stroke-width="3.5" fill="none" stroke-linecap="round" class="convergence-line"/>
-            <circle cx="477" cy="184" r="38" fill="#ad8cff" opacity=".06"/><circle cx="477" cy="184" r="24" fill="#ad8cff" opacity=".14"/><circle cx="477" cy="184" r="8" fill="#fff"/><circle cx="477" cy="184" r="4" fill="#b49aff"/>
-            <text x="26" y="72" fill="#b3a3ff" font-size="13" font-weight="700">IDEAS</text>
-            <text x="26" y="153" fill="#77d9ff" font-size="13" font-weight="700">COMPUTE</text>
-            <text x="26" y="258" fill="#edbe8e" font-size="13" font-weight="700">DATA</text>
-            <text x="35" y="339" fill="#8d8caa" font-size="12">EARLY RESEARCH</text>
-            <text x="352" y="339" fill="#8d8caa" font-size="12">MODERN AI ERA</text>
-          </svg>
-          <p class="convergence-caption"><span class="caption-signal"></span> Different advances. Shared momentum.</p>
-        </div>
-      </div>
-    </section>
+    <footer class="site-footer"><div class="footer-left"><span class="footer-glint" aria-hidden="true">✳</span> AI DIDN'T BEGIN IN 2022. IT TOOK DECADES TO GET HERE.</div><div class="footer-right"><span>Timeline spacing is compressed for readability, not to scale.</span><span class="footer-separator"></span><a href="https://github.com/hjsarker/ai-long-road-to-now" target="_blank" rel="noopener noreferrer">OPEN SOURCE ↗</a></div></footer>
+  </div>
 
-    <section class="time-lens section-space" id="time-lens" aria-labelledby="time-lens-heading">
-      <div class="container">
-        <div class="time-lens-heading">
-          <div><p class="section-label"><span>YOUR TURN</span> THE TIME LENS</p><h2 id="time-lens-heading">Pick a year.<br><em>See what changed.</em></h2></div>
-          <p class="section-deck">The story isn't locked to the scroll. Move through the milestones, revisit an idea, and discover why it couldn't scale earlier.</p>
-        </div>
-        <div class="lens-frame">
-          <div class="lens-controls">
-            <div class="lens-control-title"><div><span class="micro-label">EXPLORING THE YEAR</span><div id="lens-year" class="lens-year" aria-live="polite">2012</div></div><div class="lens-control-actions"><button type="button" class="icon-button" id="lens-prev" aria-label="Previous milestone">←</button><button type="button" class="icon-button" id="lens-next" aria-label="Next milestone">→</button></div></div>
-            <label class="visually-hidden" for="year-scrubber">Choose a year from 1943 to 2026</label>
-            <input id="year-scrubber" class="year-scrubber" type="range" min="1943" max="2026" value="2012" step="1" aria-describedby="scrubber-help">
-            <div class="lens-range-labels"><span>1943 · FIRST IDEAS</span><span>2026 · TODAY</span></div>
-            <p class="scrubber-help" id="scrubber-help">Drag the timeline or use the arrow keys to explore. The nearest documented milestone is shown.</p>
-            <div class="lens-milestones" id="lens-milestones" aria-label="Jump to a key milestone"></div>
-          </div>
-          <div class="lens-body">
-            <div class="lens-category" id="lens-category">BREAKTHROUGH</div>
-            <h3 id="lens-title">Deep learning breaks through</h3>
-            <p id="lens-short" class="lens-short">A turning point in the long story.</p>
-            <p id="lens-detail" class="lens-detail"></p>
-            <div class="lens-ingredient-heading">THE INGREDIENTS AT THIS MOMENT <span>QUALITATIVE SNAPSHOT</span></div>
-            <div id="lens-ingredients" class="lens-ingredients"></div>
-            <button id="why-toggle" class="why-toggle" type="button" aria-controls="why-answer" aria-expanded="false"><span class="why-icon">?</span> Why couldn't this happen much earlier? <span class="why-caret" aria-hidden="true">+</span></button>
-            <p id="why-answer" class="why-answer" hidden></p>
-            <a class="lens-source" id="lens-source" href="https://www.computerhistory.org/timeline/ai-robotics/" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="closing section-space" aria-labelledby="closing-heading">
-      <div class="container closing-inner">
-        <p class="section-label"><span>AFTER 80+ YEARS</span> THE JOURNEY CONTINUES</p>
-        <span class="closing-spark" aria-hidden="true">✳</span>
-        <h2 id="closing-heading">AI is not a moment.<br><em>It's a long human story.</em></h2>
-        <p>Every model we use today rests on decades of curiosity, false starts, better tools, and people solving hard problems—often without knowing how their discoveries would connect.</p>
-        <p class="closing-second">The next chapter is still being written.</p>
-        <div class="closing-actions"><a class="button button-primary" href="#journey">Experience it again <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#sources">See the sources <span aria-hidden="true">→</span></a></div>
-      </div>
-    </section>
-
-    <section class="sources section-space" id="sources" aria-labelledby="sources-heading">
-      <div class="container">
-        <div class="sources-head"><div><p class="section-label"><span>BEHIND THE STORY</span> RESEARCH &amp; NOTES</p><h2 id="sources-heading">Curious to <em>go deeper?</em></h2></div><p>Each milestone links to a source. These references are a starting point for further reading—not an exhaustive bibliography.</p></div>
-        <div id="source-grid" class="source-grid"></div>
-        <div class="method-note"><strong>A note on accuracy:</strong> The chapters compress overlapping, non-linear research into a narrative. Ingredient labels are qualitative explanations, not measured quantities. No visual curve on this site represents an actual dataset. Read the linked sources for deeper context. Last reviewed October 2026.</div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-main">
-      <a href="#top" class="footer-brand">THE LONG ROAD<br>TO NOW<span>.</span></a>
-      <div class="footer-meta"><span>An independent educational visualization.</span><span>Designed &amp; built for curious minds.</span></div>
-      <a class="footer-top" href="#top">Back to the beginning ↑</a>
-    </div>
-    <div class="container footer-bottom"><span>© 2026 Hillol Sarker Jogesh</span><span>Made to explain, not overwhelm.</span><a href="https://github.com/hjsarker/ai-long-road-to-now" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div>
-  </footer>
+  <dialog class="source-dialog" id="source-dialog" aria-labelledby="source-heading">
+    <div class="dialog-head"><span class="dialog-kicker">A NOTE ABOUT THE EXPERIENCE</span><button class="dialog-close" type="button" id="close-sources" aria-label="Close notes">✕</button></div>
+    <h2 id="source-heading">One story.<br><em>Many discoveries.</em></h2>
+    <p>This is a guided visual introduction, not an encyclopedia. Choose a glowing point to explore a milestone; the story card updates instantly. Use the arrow controls or press ← and → on your keyboard to move through history.</p>
+    <p>The three paths are <strong>conceptual</strong>: they connect the evolution of algorithms, computing power, and data. Their heights are not quantitative measurements, and later decades are intentionally given extra horizontal space so you can explore them.</p>
+    <h3>Explore the research</h3>
+    <div class="dialog-sources" id="dialog-sources"></div>
+    <div class="dialog-bottom"><span>Curated through October 2026</span><span>Built by Hillol Sarker Jogesh</span></div>
+  </dialog>
 </body>
 </html>
