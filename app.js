@@ -176,7 +176,6 @@
           e.preventDefault();
           const next=Math.min(events.length-1,Math.max(0,index+(e.key==="ArrowDown"?1:-1)));
           choose(next);
-          mobileNodes.get(next)?.focus();
         }
       });
       mobileMap.appendChild(group);
