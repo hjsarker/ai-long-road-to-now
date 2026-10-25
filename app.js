@@ -22,6 +22,7 @@
     2022:[884,228,"idea"],2024:[942,293,"data"],2025:[1001,266,"compute"],2026:[1087,266,"all"]
   };
   const eventNodes = new Map();
+  const mobileNodes = new Map();
   const lines = $("#milestone-nodes");
   const map = $("#history-map");
   const padding = (n) => String(n).padStart(2,"0");
@@ -102,6 +103,143 @@
     eventNodes.set(index,group);
   });
 
+
+  /* Portrait-first map: nodes and branch curves flow top-to-bottom on phones.
+   * Layout is editorial, not a quantitative time axis. Every milestone
+   * remains accessible via click/tap and keyboard activation.
+   */
+  function buildMobilePortraitMap(){
+    const mobileMap=$("#mobile-history-map");
+    const easing=(t)=>t*t*(3-2*t);
+    const xFor=(lane,t)=>{
+      const f=easing(Math.min(1,Math.max(0,t)));
+      if(lane==="idea")return 78+102*f;
+      if(lane==="data")return 282-102*f;
+      if(lane==="compute")return 181-4*Math.sin(Math.PI*t);
+      return 180;
+    };
+    const yTop=72,yBottom=770;
+    let markup='<defs>'+
+      '<linearGradient id="mobile-idea-gradient" x1="0" y1="0" x2=".3" y2="1"><stop stop-color="#765fe8"/><stop offset="1" stop-color="#dec0ff"/></linearGradient>'+
+      '<linearGradient id="mobile-compute-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4677ac"/><stop offset="1" stop-color="#b1eaff"/></linearGradient>'+
+      '<linearGradient id="mobile-data-gradient" x1="0" y1="0" x2="-.1" y2="1"><stop stop-color="#9b6c52"/><stop offset="1" stop-color="#ffd59b"/></linearGradient>'+
+      '<radialGradient id="mobile-halo-gradient"><stop stop-color="#b4a3ff" stop-opacity=".3"/><stop offset="1" stop-color="#b4a3ff" stop-opacity="0"/></radialGradient>'+
+      '</defs>';
+    markup+='<g aria-hidden="true">';
+    for(const mark of [{y:115,text:"THE FIRST IDEAS"},{y:303,text:"LEARNING TO LEARN"},{y:509,text:"A NEW SCALE"},{y:685,text:"IN EVERYDAY LIFE"}]){
+      markup+='<path class="mobile-era-guide" d="M13 '+mark.y+'H347"/><text class="mobile-era-label" x="15" y="'+(mark.y-9)+'">'+mark.text+'</text>';
+    }
+    for(const lane of ["idea","compute","data"]){
+      const d=[];
+      for(let k=0;k<=45;k++){
+        const t=k/45,y=yTop+(yBottom-yTop)*t;
+        d.push((k===0?"M":"L")+xFor(lane,t).toFixed(2)+" "+y.toFixed(2));
+      }
+      markup+='<path class="mobile-lane-line '+lane+'" d="'+d.join(" ")+'"/>';
+    }
+    markup+='<circle cx="180" cy="770" r="57" class="mobile-current-halo"/>'+
+      '<circle cx="180" cy="770" r="24" fill="none" stroke="#cdbaff" stroke-opacity=".25"/>'+
+      '<text x="180" y="819" text-anchor="middle" class="mobile-era-now">NOW / 2026</text></g>';
+    mobileMap.innerHTML=markup;
+    events.forEach((moment,index)=>{
+      const lane=layout[moment.year][2];
+      const y=86+index*42.75;
+      const t=Math.min(1,Math.max(0,(y-yTop)/(yBottom-yTop)));
+      const x=xFor(lane,t);
+      const color=laneColor(lane);
+      const group=document.createElementNS(NS,"g");
+      group.setAttribute("class","mobile-map-dot");
+      group.setAttribute("role","button");
+      group.setAttribute("tabindex","0");
+      group.setAttribute("data-lane",lane);
+      group.setAttribute("data-year",String(moment.year));
+      group.setAttribute("aria-label",moment.year+": "+moment.title+". Open the story.");
+      group.setAttribute("aria-pressed","false");
+      const add=(name,attrs)=>{
+        const node=document.createElementNS(NS,name);
+        for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));
+        group.appendChild(node);
+        return node;
+      };
+      const title=add("title",{});
+      title.textContent=moment.year+" — "+moment.title;
+      add("circle",{cx:x,cy:y,r:21,class:"mobile-hit"});
+      add("circle",{cx:x,cy:y,r:16.5,stroke:color,class:"mobile-ring"});
+      add("circle",{cx:x,cy:y,r:9,stroke:color,class:"mobile-disc"});
+      add("circle",{cx:x,cy:y,r:3.8,fill:color,class:"mobile-inner"});
+      const yearLabel=add("text",{x:x,y:y-18,"text-anchor":"middle",class:"mobile-year-text"});
+      yearLabel.textContent=String(moment.year);
+      group.addEventListener("click",()=>choose(index));
+      group.addEventListener("keydown",(e)=>{
+        if(e.key==="Enter"||e.key===" "){e.preventDefault();choose(index);}
+        if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+          e.preventDefault();
+          const next=Math.min(events.length-1,Math.max(0,index+(e.key==="ArrowDown"?1:-1)));
+          choose(next);
+          mobileNodes.get(next)?.focus();
+        }
+      });
+      mobileMap.appendChild(group);
+      mobileNodes.set(index,group);
+    });
+  }
+  buildMobilePortraitMap();
+
+  const mobileBreakpoint=window.matchMedia("(max-width: 850px)");
+  const mobilePane=$("#story-pane"),mobileScrim=$("#mobile-scrim"),closeMobileButton=$("#mobile-detail-close");
+  let previouslyFocused=null;
+  const isMobile=()=>mobileBreakpoint.matches;
+  function syncMobilePane(){
+    if(isMobile()){
+      if(!document.body.classList.contains("mobile-detail-open")){
+        mobilePane.inert=true;
+        mobilePane.removeAttribute("role");
+        mobilePane.removeAttribute("aria-modal");
+      }
+    }else{
+      mobilePane.inert=false;
+      mobilePane.removeAttribute("role");
+      mobilePane.removeAttribute("aria-modal");
+      document.body.classList.remove("mobile-detail-open");
+      mobileScrim.hidden=true;
+    }
+  }
+  function openMobileDetail(){
+    if(!isMobile())return;
+    previouslyFocused=document.activeElement;
+    mobilePane.inert=false;
+    mobilePane.setAttribute("role","dialog");
+    mobilePane.setAttribute("aria-modal","true");
+    mobileScrim.hidden=false;
+    document.body.classList.add("mobile-detail-open");
+    closeMobileButton.focus();
+  }
+  function closeMobileDetail(restore=true){
+    if(!document.body.classList.contains("mobile-detail-open"))return;
+    document.body.classList.remove("mobile-detail-open");
+    mobileScrim.hidden=true;
+    mobilePane.inert=isMobile();
+    mobilePane.removeAttribute("role");
+    mobilePane.removeAttribute("aria-modal");
+    if(restore && previouslyFocused && previouslyFocused.isConnected)previouslyFocused.focus();
+    previouslyFocused=null;
+  }
+  closeMobileButton.addEventListener("click",()=>closeMobileDetail());
+  mobileScrim.addEventListener("click",()=>closeMobileDetail());
+  const paneKeys=(event)=>{
+    if(!document.body.classList.contains("mobile-detail-open"))return;
+    if(event.key==="Escape"){event.preventDefault();closeMobileDetail();return;}
+    if(event.key!=="Tab")return;
+    const tabbables=[...mobilePane.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')].filter(el=>!el.hidden);
+    if(!tabbables.length)return;
+    const first=tabbables[0],last=tabbables[tabbables.length-1];
+    if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
+  };
+  document.addEventListener("keydown",paneKeys);
+  if(mobileBreakpoint.addEventListener)mobileBreakpoint.addEventListener("change",syncMobilePane);
+  syncMobilePane();
+
   function art(moment,lane){
     const year=moment.year;
     const common='<circle cx="140" cy="91" r="72" class="draw-ghost"/>'+
@@ -167,6 +305,10 @@
       node.classList.toggle("is-active",active);
       node.setAttribute("aria-pressed",String(i===selected.pin));
     });
+    mobileNodes.forEach((node,i)=>{
+      node.classList.toggle("is-active",i===index);
+      node.setAttribute("aria-pressed",String(i===selected.pin));
+    });
     $("#previous-event").disabled=findNeighbor(selected.pin,-1)===-1;
     $("#next-event").disabled=findNeighbor(selected.pin,+1)===-1;
   }
@@ -186,14 +328,7 @@
     selected.pin=index;
     selected.preview=null;
     render(index,false);
-    // Keep the chosen point visible in narrow horizontal scrollers.
-    const scroll=$("#chart-scroll");
-    if(window.innerWidth<851){
-      const x=layout[events[index].year][0];
-      const virtualWidth=map.getBoundingClientRect().width;
-      const unit=virtualWidth/1180;
-      scroll.scrollTo({left:Math.max(0,x*unit-scroll.clientWidth*.5),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
-    }
+    openMobileDetail();
   }
   function changeBy(direction){
     const neighbor=findNeighbor(selected.pin,direction);
@@ -206,6 +341,7 @@
     selected.pin=index;selected.preview=null;
     pauseJourney();render(index,false);
   });
+  $("#time-range").addEventListener("change",()=>openMobileDetail());
   $$(".track-toggle").forEach(button=>{
     button.addEventListener("click",()=>{
       selected.filter=button.dataset.track;
@@ -215,6 +351,7 @@
         b.setAttribute("aria-pressed",String(active));
       });
       map.dataset.filter=selected.filter;
+      $("#mobile-history-map").dataset.filter=selected.filter;
       if(!matches(selected.pin)){
         const next=events.findIndex((_,i)=>matches(i));
         if(next>=0)choose(next);
@@ -244,10 +381,7 @@
       selected.pin=next;
       selected.preview=null;
       render(next,false);
-      if(window.innerWidth<851){
-        const scroll=$("#chart-scroll"),x=layout[events[next].year][0];
-        scroll.scrollTo({left:Math.max(0,x*(map.getBoundingClientRect().width/1180)-scroll.clientWidth*.5),behavior:"smooth"});
-      }
+      // Portrait timeline highlights advance without hijacking touch scrolling.
     },1600);
   }
   $("#play-journey").addEventListener("click",playJourney);
@@ -255,7 +389,7 @@
   document.addEventListener("keydown",(e)=>{
     const tag=document.activeElement?.tagName?.toLowerCase();
     if(["input","textarea","select"].includes(tag))return;
-    if($("#source-dialog").open)return;
+    if($("#source-dialog").open || document.body.classList.contains("mobile-detail-open"))return;
     if(e.key==="ArrowLeft"||e.key==="ArrowRight"){
       e.preventDefault();
       changeBy(e.key==="ArrowRight"?1:-1);
