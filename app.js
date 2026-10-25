@@ -167,8 +167,8 @@
       node.classList.toggle("is-active",active);
       node.setAttribute("aria-pressed",String(i===selected.pin));
     });
-    $("#previous-event").disabled=!findNeighbor(selected.pin,-1);
-    $("#next-event").disabled=!findNeighbor(selected.pin,+1);
+    $("#previous-event").disabled=findNeighbor(selected.pin,-1)===-1;
+    $("#next-event").disabled=findNeighbor(selected.pin,+1)===-1;
   }
 
   function matches(index){
