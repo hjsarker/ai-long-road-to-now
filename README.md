@@ -1,21 +1,59 @@
 # AI: The Long Road to Now
 
-An interactive, beginner-friendly journey through how artificial intelligence developed from early ideas in the 1940s to 2026.
+**The future had a very long beginning.**
 
-**Story first.** Not an encyclopedia, not a leaderboard, and not a claim that AI suddenly started in 2022. Six scroll-driven chapters explain how ideas, computing power, data, and practical techniques converged over decades.
+A full-screen, interactive visual journey through AI history, from early theoretical neural networks in **1943** to the contemporary AI landscape in **2026**.
 
-## Features
+**Live experience:** https://hjsarker.github.io/ai-long-road-to-now/
 
-- Immersive, scroll-based narrative with six chapters.
-- An interactive year-by-year **Time Lens** with sourced milestones and a "Why not earlier?" explanation.
-- Responsive layout for desktop, tablet, and mobile.
-- Keyboard-friendly controls, visible focus states, and reduced-motion support.
-- Self-contained HTML/CSS/vanilla JavaScript: no framework, build step, trackers, cookies, API keys, or paid services.
-- Citations linking to original research and reputable historical accounts.
+## The experience
 
-## Local preview
+Instead of a long article or encyclopedia, a single interactive map connects three broad streams:
 
-Open `index.html` in a browser, or start a local static server:
+- **Ideas** — models, algorithms, reasoning, and breakthroughs in learning
+- **Compute** — the machines and infrastructure needed to make ideas practical
+- **Data** — the examples, images, and language needed for learning
+
+The colored paths converge visually toward the current AI era. **They are illustrative, not quantitative charts.** Their heights do not encode a measured value, and the historical x-axis deliberately allocates more space to recent years for readability.
+
+### Interactions
+
+- **Hover a node:** temporarily preview the milestone in the contextual story panel
+- **Click or tap a node:** pin that milestone
+- **Use arrow controls or keyboard arrows:** move between milestones
+- **Slide the year scrubber:** jump to the nearest documented event
+- **Filter Ideas, Compute, or Data:** follow an individual branch
+- **Play journey:** watch milestones advance automatically
+- **About & sources:** read the approach and reference materials
+
+On narrow screens, the map can be swiped horizontally and the detail panel moves below it.
+
+## Technical stack
+
+Plain HTML, CSS, SVG, and JavaScript. No framework, build step, analytics, cookies, API keys, or external dependencies. Deployed on **GitHub Pages**.
+
+## Files
+
+- `index.html` — page structure and interactive SVG map
+- `styles.css` — desktop/mobile visuals and motion
+- `app.js` — interactive nodes, hover previews, filtering, keyboard support and playback
+- `content.js` — source-linked historical moments and supplementary context
+- `favicon.svg` — original project mark
+- `.nojekyll` — static hosting setting
+
+## Historical accuracy
+
+This visualization introduces major milestones rather than attempting a complete history. Dates, titles, and explanations come from curated references and academic papers linked from the story panel.
+
+The **Ideas**, **Compute**, and **Data** branches are conceptual categories. The curves are hand-designed to communicate convergence; they do not represent measured historical performance. Hardware capability, dataset size, and AI training computation are different kinds of data and must not be combined into an invented unified scale. The spacing of milestones is non-linear.
+
+Research references are available in `content.js`, and each node links to its historical or research source.
+
+Last editorial review: October 2026.
+
+## Run locally
+
+Open `index.html` in a modern browser, or run:
 
 ```bash
 python3 -m http.server 8000
@@ -23,32 +61,6 @@ python3 -m http.server 8000
 
 Then visit http://localhost:8000.
 
-## GitHub Pages
+## Publisher
 
-The website is ready for Pages at the repository root. Enable deployment in **Settings → Pages → Build and deployment → Source: Deploy from a branch → main → /(root) → Save**.
-
-Once enabled, the public URL is expected to be:
-
-**https://hjsarker.github.io/ai-long-road-to-now/**
-
-If Pages is not activated yet, the GitHub repository will contain the complete site, but the above URL may return 404.
-
-## Editorial approach
-
-Each milestone includes a source URL. The three ingredient descriptions in the Time Lens are **qualitative editorial summaries**, not measured time-series data. We deliberately do not place AI training FLOPs, compute hardware performance, and storage costs on a fictional shared numeric scale.
-
-Historical developments were overlapping, worldwide, and non-linear. The six chapters are a guided introduction, not a complete account of AI history.
-
-## Structure
-
-- `index.html` — semantic page structure and metadata
-- `styles.css` — all responsive styling and visualizations
-- `content.js` — sourced milestones and chapter content
-- `app.js` — story renderer, scroll interaction, Time Lens, keyboard navigation
-- `favicon.svg` — original mark
-
-## Credits
-
-Created for Hillol Sarker Jogesh as an independent public educational visualization. Research sources are linked in the interface and in `content.js`.
-
-*Last editorial review: October 2026.*
+Created for **Hillol Sarker Jogesh** as a public educational visualization and an interactive UI/data-storytelling portfolio project.
