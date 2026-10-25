@@ -14,9 +14,9 @@
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://hjsarker.github.io/ai-long-road-to-now/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=20261025-map-v1">
+  <link rel="stylesheet" href="./styles.css?v=20261025-mobile-v2">
   <script src="./content.js" defer></script>
-  <script src="./app.js?v=20261025-map-v1" defer></script>
+  <script src="./app.js?v=20261025-mobile-v2" defer></script>
   <title>AI: The Long Road to Now | An Interactive History</title>
 </head>
 <body>
@@ -63,6 +63,16 @@
           </div>
 
           <div class="chart-main">
+            <div class="mobile-map-intro" aria-hidden="true"><span class="mobile-map-badge">ONE CONTINUOUS STORY</span><span class="mobile-map-hint">Tap any year to explore ↗</span></div>
+            <div class="mobile-map-shell" id="mobile-map-shell" aria-label="Vertical history timeline from 1943 to 2026 with three connected development streams">
+              <div class="mobile-map-top">
+                <span class="mobile-track-label mobile-track-idea"><i></i> IDEAS</span>
+                <span class="mobile-track-label mobile-track-compute"><i></i> COMPUTE</span>
+                <span class="mobile-track-label mobile-track-data"><i></i> DATA</span>
+              </div>
+              <svg id="mobile-history-map" class="mobile-history-map" viewBox="0 0 360 836" aria-label="A vertically flowing, interactive AI history from 1943 to 2026"></svg>
+              <p class="mobile-map-bottom">THREE STREAMS. ONE MODERN AI ERA.</p>
+            </div>
             <div class="chart-scroll" id="chart-scroll" tabindex="0" aria-label="Timeline graphic, 1943 through 2026. Scroll sideways on narrow screens.">
               <svg id="history-map" class="history-map" viewBox="0 0 1180 532" preserveAspectRatio="xMidYMid meet" role="group" aria-label="The interactive map shows ideas, computing power and data evolving from 1943 to 2026">
                 <defs>
@@ -124,6 +134,7 @@
         </div>
 
         <aside class="story-pane" id="story-pane" aria-label="Details for selected milestone" aria-live="off">
+          <button class="mobile-detail-close" type="button" id="mobile-detail-close" aria-label="Close milestone details">✕</button>
           <div class="detail-topline"><span class="detail-topline-mark"><span></span> MOMENT IN TIME</span><span class="detail-id" id="detail-id">08 / 15</span></div>
           <div class="visual-box" id="visual-box" aria-label="An original illustration of the selected milestone">
             <div class="visual-grid" aria-hidden="true"></div>
@@ -142,6 +153,7 @@
       </section>
     </main>
 
+    <div class="mobile-scrim" id="mobile-scrim" hidden></div>
     <footer class="site-footer"><div class="footer-left"><span class="footer-glint" aria-hidden="true">✳</span> AI DIDN'T BEGIN IN 2022. IT TOOK DECADES TO GET HERE.</div><div class="footer-right"><span>Timeline spacing is compressed for readability, not to scale.</span><span class="footer-separator"></span><a href="https://github.com/hjsarker/ai-long-road-to-now" target="_blank" rel="noopener noreferrer">OPEN SOURCE ↗</a></div></footer>
   </div>
 
